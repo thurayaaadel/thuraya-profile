@@ -2418,7 +2418,7 @@ body.tht-body::after {
   display: flex !important;
 }
 
-/* 4. التأكد من أن الصور لا تتعدى حجم المسرح */
+/* 4. التأكد من أن الصور لا تتعدى حجم المسرح- */
 .tht-flipbook .tht-flip-page canvas {
   max-width: 100% !important;
   max-height: 100% !important;
