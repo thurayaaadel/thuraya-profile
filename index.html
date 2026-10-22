@@ -344,49 +344,32 @@
 <section class="tht-section" id="tht-portfolio">
   <div class="tht-section-header">
     <span class="tht-section-label">بروفايلي</span>
-    <h2 class="tht-section-title">تصفح <span>كتابنا التفاعلي</span></h2>
-    <p class="tht-section-desc">اقلب الصفحات لاستكشاف خدماتنا ومشاريعنا — الكتاب بتقنية 3D حقيقية.</p>
+    <h2 class="tht-section-title">تصفح <span>أرشيفنا السينمائي</span></h2>
+    <p class="tht-section-desc">اسحب أو استخدم الأزرار لاستكشاف صفحات البروفايل.</p>
     <div class="tht-line"></div>
   </div>
 
-  <div class="tht-flipbook-wrapper">
-    <!-- شريط الأدوات -->
-    <div class="tht-flipbook-toolbar">
-      <button class="tht-flipbook-tool" id="thtFlipPrev" title="السابق">◀</button>
-      <div class="tht-flipbook-page-info">
-        <input type="number" id="thtPageInput" value="1" min="1" readonly>
-        <span class="tht-flipbook-sep">/</span>
-        <span id="thtPageTotal">-</span>
-      </div>
-      <button class="tht-flipbook-tool" id="thtFlipNext" title="التالي">▶</button>
-      <div class="tht-flipbook-sep-vertical"></div>
-      <button class="tht-flipbook-tool" id="thtFlipZoomIn" title="تكبير">➕</button>
-      <button class="tht-flipbook-tool" id="thtFlipZoomOut" title="تصغير">➖</button>
-      <button class="tht-flipbook-tool" id="thtFlipFullscreen" title="ملء الشاشة">⛶</button>
-      <button class="tht-flipbook-tool" id="thtFlipDownload" title="تحميل PDF">⬇</button>
+  <div class="tht-cinema-container">
+    <!-- أزرار التنقل -->
+    <button class="tht-cinema-btn tht-prev" onclick="thtMoveCinema(-1)">❮</button>
+    
+    <!-- المسرح الذي يحتوي على الصور -->
+    <div class="tht-cinema-stage" id="thtCinemaStage">
+      <!-- ضع هنا مسارات الصور التي استخرجتها من الـ PDF -->
+      <div class="tht-cinema-card"><img src="./page1.jpg" alt="صفحة 1"></div>
+      <div class="tht-cinema-card"><img src="./page2.jpg" alt="صفحة 2"></div>
+      <div class="tht-cinema-card"><img src="./page3.jpg" alt="صفحة 3"></div>
+      <div class="tht-cinema-card"><img src="./page4.jpg" alt="صفحة 4"></div>
+      <div class="tht-cinema-card"><img src="./page5.jpg" alt="صفحة 5"></div>
+      <div class="tht-cinema-card"><img src="./page6.jpg" alt="صفحة 6"></div>
+      <div class="tht-cinema-card"><img src="./page7.jpg" alt="صفحة 7"></div>
+      <div class="tht-cinema-card"><img src="./page8.jpg" alt="صفحة 8"></div>
     </div>
 
-    <!-- المسرح -->
-    <div class="tht-flipbook-stage">
-      <div class="tht-flipbook-loading" id="thtFlipLoading">
-        <div class="tht-flipbook-spinner"></div>
-        <p id="thtFlipLoadingText">جاري تحميل الكتاب...</p>
-        <div class="tht-flipbook-progress">
-          <div class="tht-flipbook-progress-bar" id="thtFlipProgressBar"></div>
-        </div>
-      </div>
-      <div class="tht-flipbook" id="thtFlipbook"></div>
-    </div>
-
-    <!-- الأزرار السفلية -->
-    <div class="tht-flipbook-controls">
-      <button class="tht-flipbook-btn" id="thtFlipFirst">⏮ البداية</button>
-      <button class="tht-flipbook-btn tht-primary" id="thtFlipPrev2">◀ السابق</button>
-      <button class="tht-flipbook-btn tht-primary" id="thtFlipNext2">التالي ▶</button>
-      <button class="tht-flipbook-btn" id="thtFlipLast">النهاية ⏭</button>
-    </div>
-
-    <p class="tht-flipbook-hint">💡 استخدم السحب أو الأسهم أو الأزرار</p>
+    <button class="tht-cinema-btn tht-next" onclick="thtMoveCinema(1)">❯</button>
+    
+    <!-- عداد الصفحات -->
+    <div class="tht-cinema-counter" id="thtCinemaCounter">1 / 8</div>
   </div>
 </section>
 <!-- ═══════════ tht-why : لماذا نحن ═══════════ -->
