@@ -1131,7 +1131,7 @@ const thtFlipbook = {
       startZIndex: 0,
       autoSize: true,
       maxShadowOpacity: 0.5,
-      showCover: false,
+      showCover: true,
       mobileScrollSupport: false,
       useMouseEvents: true,
       swipeDistance: 30,
