@@ -2391,43 +2391,29 @@ body.tht-body::after {
   }
 }
 
-/* ═══════════════════════════════════════════════
-   الحل النهائي لعزل الكتاب ومنع تأثر الأقسام الأخرى
-   ═══════════════════════════════════════════════ */
-
-/* 1. إجبار مسرح الكتاب على الاحتفاظ بأبعاد ثابتة وعدم التمدد */
+/* ═══ عزل الكتاب ═══ */
 .tht-flipbook-stage {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  height: 650px !important; /* ارتفاع ثابت يمنع الكتاب من دفع الأقسام */
-  max-height: 80vh !important; 
+  height: 650px !important;
+  max-height: 80vh !important;
   width: 100% !important;
-  overflow: hidden !important; /* يمنع الصور من الخروج عن الإطار */
+  overflow: hidden !important;
   position: relative;
 }
 
-/* 2. إخفاء الصور المتكدسة قبل أن تقوم مكتبة StPageFlip بترتيبها */
-/* هذا الكود يخفي الصفحات فقط داخل قسم الكتاب ولا يؤثر على أي شيء آخر */
+/* إخفاء الصفحات الأصلية عن العين ولكن ليس عن المكتبة */
 .tht-flipbook .tht-flip-page {
-  display: none !important;
+  visibility: hidden; /* بدلاً من display: none */
+  opacity: 0;
 }
 
-/* 3. إظهار الصفحات فقط عندما تقوم المكتبة بإنشاء غلاف الكتاب (stf__item) */
+/* إظهار الصفحات فقط داخل الكتاب الذي تبنيه المكتبة */
 .tht-flipbook .stf__item .tht-flip-page {
+  visibility: visible !important;
+  opacity: 1 !important;
   display: flex !important;
-}
-
-/* 4. التأكد من أن الصور لا تتعدى حجم المسرح- */
-.tht-flipbook .tht-flip-page canvas {
-  max-width: 100% !important;
-  max-height: 100% !important;
-  object-fit: contain !important;
-}
-
-/* 5. تنظيف بقايا أي كود قديم قد يكون سبب المشكلة */
-.tht-flipbook-wrapper {
-  margin-bottom: 50px; /* مسافة آمنة بين الكتاب والقسم الذي يليه */
 }
 
 
