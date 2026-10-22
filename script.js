@@ -1074,14 +1074,15 @@ const thtFlipbook = {
       )
     );
 
-     /* إخفاء شاشة التحميل */
+    /* إخفاء شاشة التحميل */
     this.els.loading?.classList.add('tht-hidden');
 
-    /* إخفاء الصور المتتالية حتى لا تظهر فوق بعضها قبل تهيئة المكتبة */
-    flipContainer.style.display = 'none'; 
-    
+    /* إظهار الكتاب */
+    flipContainer.classList.remove('tht-hidden');
+
     /* تهيئة StPageFlip */
     this.initPageFlip(displayWidth, displayHeight);
+  },
 
   async renderPage(pageNum, width, height) {
     try {
@@ -1108,6 +1109,7 @@ const thtFlipbook = {
       console.warn('[tht-flipbook] فشل رسم الصفحة', pageNum, err);
     }
   },
+
   /* ═══ تهيئة StPageFlip ═══ */
   initPageFlip(width, height) {
     const flipContainer = this.els.flipbook;
@@ -1138,11 +1140,6 @@ const thtFlipbook = {
       disableFlipByClick: false
     });
 
-     // محاولة إخفاء الصور المتتالية وإظهار الكتاب
-    const flipbookElement = document.getElementById('thtFlipbook');
-    flipbookElement.style.display = 'block'; // إظهار الحاوية
-    
-    // تهيئة صفحات التقليب
     this.pageFlip.loadFromHTML(document.querySelectorAll('.tht-flip-page'));
 
     /* أحداث التقليب */
