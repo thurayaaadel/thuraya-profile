@@ -2390,3 +2390,14 @@ body.tht-body::after {
     display: none;
   }
 }
+
+
+
+/* إجبار الصفحات على الاختفاء حتى يجهز الكتاب */
+.tht-flip-page {
+  display: none !important; 
+}
+/* إظهارها فقط عندما يتم تجهيزها من قبل StPageFlip */
+.stf__item .tht-flip-page {
+  display: flex !important;
+}
