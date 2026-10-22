@@ -1142,6 +1142,11 @@ const thtFlipbook = {
 
     this.pageFlip.loadFromHTML(document.querySelectorAll('.tht-flip-page'));
 
+    // إزالة أي إخفاء يدوي عن الحاوية الرئيسية للكتاب
+    if (this.els.flipbook) {
+      this.els.flipbook.style.display = 'block';
+      this.els.flipbook.style.visibility = 'visible';
+    }
     /* أحداث التقليب */
     this.pageFlip.on('flip', (e) => {
       this.currentPage = e.data;
