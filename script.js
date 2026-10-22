@@ -1277,6 +1277,64 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', () => {
   thtFlipbook.init();
 });
+
+// ═══ كود الأرشيف السينمائي ═══
+let thtCurrentCinemaIndex = 0;
+const thtCinemaCards = document.querySelectorAll('.tht-cinema-card');
+const thtCinemaCounter = document.getElementById('thtCinemaCounter');
+const thtTotalCinemaCards = thtCinemaCards.length;
+
+function thtUpdateCinemaView() {
+  thtCinemaCards.forEach((card, index) => {
+    // إزالة جميع الكلاسات السابقة
+    card.classList.remove('tht-active', 'tht-prev-card', 'tht-next-card', 'tht-hidden-card');
+    
+    if (index === thtCurrentCinemaIndex) {
+      card.classList.add('tht-active');
+    } else if (index === thtCurrentCinemaIndex - 1) {
+      card.classList.add('tht-prev-card');
+    } else if (index === thtCurrentCinemaIndex + 1) {
+      card.classList.add('tht-next-card');
+    } else {
+      card.classList.add('tht-hidden-card');
+    }
+  });
+
+  // تحديث العداد
+  if (thtCinemaCounter) {
+    thtCinemaCounter.textContent = `${thtCurrentCinemaIndex + 1} / ${thtTotalCinemaCards}`;
+  }
+}
+
+function thtMoveCinema(direction) {
+  thtCurrentCinemaIndex += direction;
+  
+  // منع الخروج عن النطاق (Loop)
+  if (thtCurrentCinemaIndex < 0) thtCurrentCinemaIndex = thtTotalCinemaCards - 1;
+  if (thtCurrentCinemaIndex >= thtTotalCinemaCards) thtCurrentCinemaIndex = 0;
+  
+  thtUpdateCinemaView();
+}
+
+// النقر على الصفحات الجانبية للتنقل
+thtCinemaCards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('tht-prev-card')) {
+      thtMoveCinema(-1);
+    } else if (card.classList.contains('tht-next-card')) {
+      thtMoveCinema(1);
+    }
+  });
+});
+
+// تهيئة العرض الأولي
+document.addEventListener('DOMContentLoaded', () => {
+  // في حال لم يتم تحويل الـ PDF إلى صور، يمكنك استخدام الـ Canvas القديم،
+  // لكن هنا نفترض وجود صور باسم page1.jpg وهكذا داخل مجلد images.
+  if (thtCinemaCards.length > 0) {
+    thtUpdateCinemaView();
+  }
+});
 /* ═══════════════════════════════════════════════════════════════════
    tht : نهاية السكربت
    Author: tht - Thuraya Tech
