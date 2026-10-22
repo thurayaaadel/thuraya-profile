@@ -1109,7 +1109,6 @@ const thtFlipbook = {
       console.warn('[tht-flipbook] فشل رسم الصفحة', pageNum, err);
     }
   },
-
   /* ═══ تهيئة StPageFlip ═══ */
   initPageFlip(width, height) {
     const flipContainer = this.els.flipbook;
