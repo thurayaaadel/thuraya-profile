@@ -2415,5 +2415,140 @@ body.tht-body::after {
   opacity: 1 !important;
   display: flex !important;
 }
+/* ═══ تصميم الأرشيف السينمائي ═══ */
+.tht-cinema-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle, var(--tht-accent-soft) 0%, transparent 70%);
+  border-radius: 20px;
+  padding: 20px;
+}
 
+.tht-cinema-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* لإضافة تأثير ثلاثي الأبعاد خفيف */
+}
+
+.tht-cinema-card {
+  position: absolute;
+  width: 400px; /* عرض الصفحة */
+  height: 100%;
+  max-height: 550px;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0;
+  transform: scale(0.6) translateX(0);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 2px solid var(--tht-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  pointer-events: none;
+}
+
+.tht-cinema-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* الصفحة النشطة (في المنتصف) */
+.tht-cinema-card.tht-active {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+  z-index: 10;
+  border-color: var(--tht-accent);
+  box-shadow: 0 0 40px var(--tht-accent-glow);
+  pointer-events: auto;
+}
+
+/* الصفحة السابقة (على اليمين لأننا في وضع RTL) */
+.tht-cinema-card.tht-prev-card {
+  opacity: 0.4;
+  transform: scale(0.8) translateX(60%);
+  z-index: 5;
+  filter: grayscale(80%) blur(2px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* الصفحة التالية (على اليسار) */
+.tht-cinema-card.tht-next-card {
+  opacity: 0.4;
+  transform: scale(0.8) translateX(-60%);
+  z-index: 5;
+  filter: grayscale(80%) blur(2px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* الصفحات المخفية */
+.tht-cinema-card.tht-hidden-card {
+  opacity: 0;
+  transform: scale(0.5) translateX(0);
+  z-index: 1;
+}
+
+/* أزرار التنقل */
+.tht-cinema-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--tht-bg-card);
+  border: 2px solid var(--tht-accent);
+  color: var(--tht-accent);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 20;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tht-cinema-btn:hover {
+  background: var(--tht-accent);
+  color: var(--tht-bg-primary);
+  box-shadow: 0 0 20px var(--tht-accent-glow);
+}
+
+.tht-cinema-btn.tht-prev { right: 20px; }
+.tht-cinema-btn.tht-next { left: 20px; }
+
+/* العداد */
+.tht-cinema-counter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tht-bg-card);
+  padding: 5px 20px;
+  border-radius: 20px;
+  color: var(--tht-accent);
+  font-weight: bold;
+  border: 1px solid var(--tht-border-color);
+  z-index: 20;
+}
+
+/* تجاوب مع الجوال */
+@media (max-width: 768px) {
+  .tht-cinema-card { width: 80%; }
+  .tht-cinema-card.tht-prev-card { transform: scale(0.7) translateX(40%); }
+  .tht-cinema-card.tht-next-card { transform: scale(0.7) translateX(-40%); }
+  .tht-cinema-btn { width: 40px; height: 40px; font-size: 16px; }
+}
 
